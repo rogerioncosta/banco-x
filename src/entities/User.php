@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace BancoX\entities;
 
 use BancoX\entities\validators\PasswordValidator;
+use Error;
 
 class User 
 {

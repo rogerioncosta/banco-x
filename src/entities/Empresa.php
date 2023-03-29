@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BancoX\entities;
 
-// Enumerations: para variáveis que recebem ativo ou inativo ou sim ou não.
+// Enumerations: para variáveis que recebem ativo ou inativo, ou sim ou não.
 enum Status {
     case Active;
     case Inactive;
