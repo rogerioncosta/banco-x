@@ -20,4 +20,4 @@ class CnpjValidator
     }
 }
 
-var_dump(CnpjValidator::valid('00.000.000/0000-000'));
+// var_dump(CnpjValidator::valid('00.000.000/0000-000'));

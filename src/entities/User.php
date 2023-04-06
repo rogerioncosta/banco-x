@@ -60,4 +60,4 @@ class User
     }
 }
 
-User::create('rogerio', 'r@gmail.com',  '123', '123.568.668.45');
+// User::create('rogerio', 'r@gmail.com',  '123', '123.568.668.45');

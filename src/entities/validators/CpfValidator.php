@@ -20,4 +20,4 @@ class CpfValidator
     }
 }
 
-var_dump(CpfValidator::valid('000.000.000-00'));
+// var_dump(CpfValidator::valid('000.000.000-00'));

@@ -16,4 +16,4 @@ class EmailValidator
     }
 }
 
-var_dump(PasswordValidator::valid('rogerio@gmail.com'));
+// var_dump(PasswordValidator::valid('rogerio@gmail.com'));
