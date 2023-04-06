@@ -14,6 +14,7 @@ $inMemoryRepository = new UserRepositoryInMemory();
 $registerSaveInMemory = new RegisterUser($inMemoryRepository);
 
 $registerSaveInMemory->execute('Rogerio', 'rogerio@gmail.com', 'Senha@12345678', '123.554.988-25');
+$registerSaveInMemory->execute('teste', 'teste@gmail.com', 'Senha@12345678', '123.554.482-00');
 
 // Obter todos os usuários
 $getAllUsersInMemory = new GetAllUsers($inMemoryRepository);
