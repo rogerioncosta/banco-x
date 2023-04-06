@@ -1,4 +1,7 @@
 <?php
+
+namespace BancoX\repositories\user;
+
 use BancoX\repositories\user\IUserRepository;
 
 class UserRepositoryInMemory implements IUserRepository {
@@ -33,6 +36,6 @@ class UserRepositoryInMemory implements IUserRepository {
 
     public function getAllUsers(): array
     {
-        return self::$users;
+        return self::$users; 
     }
 }
