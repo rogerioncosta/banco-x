@@ -1,12 +1,10 @@
 <?php
 
-namespace BancoX\tests;
+require_once __DIR__ . "/../vendor/autoload.php";
 
 use BancoX\repositories\user\UserRepositoryInMemory;
 use BancoX\app\RegisterUser;
 use BancoX\app\GetAllUsers;
-
-require_once __DIR__ . "/../vendor/autoload.php";
 
 // Teste:
 
