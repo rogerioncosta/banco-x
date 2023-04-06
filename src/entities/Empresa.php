@@ -1,8 +1,13 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types=1); // A tipagem deve ser respeitada
 
 namespace BancoX\entities;
+
+use BancoX\entities\validators\CnpjValidator;
+use BancoX\entities\validators\EmailValidator;
+use BancoX\entities\validators\PasswordValidator;
+use Error;
 
 // Enumerations: para variáveis que recebem ativo ou inativo, ou sim ou não.
 enum Status {
@@ -36,6 +41,21 @@ class Empresa {
     }
 
     public static function create(string $corporateName, string $email, string $password, string $cnpj, Status $status) {
+
+        // Validar os valores
+
+        if(!PasswordValidator::valid($password)) {
+            throw new Error('A senha não é válida');
+        }
+
+        if(!CnpjValidator::valid($cnpj)) {
+            throw new Error('CPF não é válido');
+        }
+
+        if(!EmailValidator::valid($email)) {
+            throw new Error("Email não é válido");
+        }
+
         return new self($corporateName, $email, $password, $cnpj, $status);
     }
 

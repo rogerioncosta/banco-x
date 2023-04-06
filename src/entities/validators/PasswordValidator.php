@@ -16,4 +16,6 @@ class PasswordValidator
     }
 }
 
+/* Teste
 var_dump(PasswordValidator::valid('3sv51*1'));
+*/
