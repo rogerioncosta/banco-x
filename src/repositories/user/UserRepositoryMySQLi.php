@@ -42,7 +42,7 @@ class UserRepositoryMySQLi implements IUserRepository {
         $stmt->bindParam(":cpf", $cpf);  
         
         if(!$query) {
-            return false;
+            return false; //
         }
 
         return true;
