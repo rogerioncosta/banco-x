@@ -19,7 +19,7 @@ class UserRepositoryMySQLi implements IUserRepository {
     public function connectionMSQLi() {        
     
         try {
-            $this->conn = new PDO("msql:host=$this->host;dbname", $this->user, $this->pass);
+            $this->conn = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass);
     
             // Ativar o modo de erros
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
