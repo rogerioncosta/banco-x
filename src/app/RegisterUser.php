@@ -7,6 +7,7 @@ namespace BancoX\app;
 use BancoX\entities\User;
 use BancoX\repositories\user\IUserRepository;
 use Error;
+use PDOException;
 
 // Vai unir as entidades, solicitações do usuário com os repositórios. Vai chamar os repositórios.
 class RegisterUser {
@@ -30,6 +31,9 @@ class RegisterUser {
             );
 
         } catch (Error $error) {
+            echo $error->getMessage();
+            
+        } catch(PDOException $error) {
             echo $error->getMessage();
         }
     }
