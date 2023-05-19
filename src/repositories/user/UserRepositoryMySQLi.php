@@ -3,59 +3,58 @@
 namespace BancoX\repositories\user;
 
 use PDO;
-use PDOException;
+use BancoX\shared\ConnectionDb;
+use Error;
 
 // Criando métodos para se comunicar com DB ou ORM.
 
 // Criar registro no DB
 class UserRepositoryMySQLi implements IUserRepository {
-
-    public $host = "localhost";
-    public $dbname = "bancox";
-    public $user = "root";
-    private $pass = "";
-    public $conn;
-
-    public function connectionMSQLi() {        
-    
-        try {
-            $this->conn = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->user, $this->pass);
-    
-            // Ativar o modo de erros
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $err) {
-            // Erro na conexão
-            $error = $err->getMessage();
-            echo "Erro: $error";
-        }
-    }
-
-    public function createUser(string $name, string $email, string $password, string $cpf): bool {
-
-        $query = "INSERT INTO user (name, email, password, cpf) VALUES (:name, :email, :password, :cpf)";
-        
-        $stmt = $this->conn->prepare($query);
-
-        $stmt->bindParam(":name", $name);
-        $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":password", $password);
-        $stmt->bindParam(":cpf", $cpf);  
-        
-        if(!$query) {
-            return false; //
-        }
-
-        return true;
-    }
-
-    public function getUserByCpf(string|int $cpf): array | false
+    public function createUser(string $name, string $email, string $password, string $cpf): bool
     {
-        return true;
-    }
+      $db = ConnectionDb::get(); 
+  
+      $query = "INSERT INTO user (name, email, cpf, password) VALUES (:name, :email, :cpf, :password)";
+      
+      $statement = $db->prepare($query);
+  
+      $statement->bindValue(":name", $name);
+      $statement->bindValue(":email", $email);
+      $statement->bindValue(":cpf", $cpf);  
+      $statement->bindValue(":password", $password);
 
-    public function getAllUsers(): bool
+      try {
+        return $statement->execute();
+        
+      } catch(Error $e) {
+        echo $e->getMessage();
+      }
+  
+    } 
+  
+    public function getUserByCpf(string|int $cpf): mixed
     {
-        return true;
+      $db = ConnectionDb::get();
+  
+      $query = "SELECT * FROM user WHERE cpf=:cpf";
+  
+      $statement = $db->prepare($query);
+  
+      $statement->bindValue(":cpf", (string)$cpf);
+  
+      $statement->execute();
+  
+      return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-}
-
+  
+    public function getAllUsers(): mixed
+    {
+      $db = ConnectionDb::get();
+  
+      $query = "SELECT id, name, email, cpf FROM user";
+  
+      $statement = $db->query($query);
+  
+      return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+  }
