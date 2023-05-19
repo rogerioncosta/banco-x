@@ -14,6 +14,10 @@ switch ($uri) {
     case '/login':
         require_once __DIR__ . "/pages/login.php";
         break;
+
+    case '/cadastro':
+        require_once __DIR__ . "/pages/cadastro.php";
+        break;
     
     default:
         require_once __DIR__ . "/pages/404.php";
