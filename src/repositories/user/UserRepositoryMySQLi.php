@@ -57,4 +57,4 @@ class UserRepositoryMySQLi implements IUserRepository {
   
       return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-  }
+}
